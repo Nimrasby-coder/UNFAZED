@@ -44,30 +44,35 @@ function App() {
   }, []);
 
   // Register therapist
-  const registerTherapist = () => {
-    apiRequest("/api/therapists/register", {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        phone,
-        specialization,
-      }),
-    })
-      .then((data) => {
-        alert(data.message || "Therapist registered successfully");
+const registerTherapist = () => {
+  if (!name || !email || !password || !phone || !specialization) {
+    alert("Please fill all registration fields");
+    return;
+  }
 
-        setName("");
-        setEmail("");
-        setPassword("");
-        setPhone("");
-        setSpecialization("");
-      })
-      .catch((error) => {
-        alert(error.message || "Registration failed");
-      });
-  };
+  apiRequest("/api/therapists/register", {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      phone,
+      specialization,
+    }),
+  })
+    .then((data) => {
+      alert(data.message || "Therapist registered successfully");
+
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPhone("");
+      setSpecialization("");
+    })
+    .catch((error) => {
+      alert(error.message || "Registration failed");
+    });
+};
 
   // Load clients
   const loadClients = () => {
@@ -487,6 +492,14 @@ function App() {
       <button onClick={viewProfile}>
         View My Profile
       </button>
+      <button
+  onClick={() => {
+    localStorage.removeItem("token");
+    alert("Logged out successfully");
+  }}
+>
+  Logout
+</button>
 
       <hr />
 
