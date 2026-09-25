@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "./api";
-
+import "./App.css";
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking...");
 
@@ -346,12 +346,14 @@ const registerTherapist = () => {
         alert(error.message || "Failed to complete session");
       });
   };
-
-  return (
-    <div>
-      <h1>UNFAZED</h1>
-
-      <h2>Therapist Management Dashboard</h2>
+return (
+  <div>
+    <header className="app-header">
+      <div>
+        <h1>UNFAZED</h1>
+        <p>Therapist Management Dashboard</p>
+      </div>
+    </header>
 
       <nav>
         <button onClick={() => window.scrollTo(0, 0)}>
@@ -381,9 +383,13 @@ const registerTherapist = () => {
 
       <hr />
 
-      <h2>Welcome, Therapist 👋</h2>
+     <div className="welcome-section">
+  <h2>Welcome, Therapist 👋</h2>
 
-      <p>Backend status: {backendStatus}</p>
+  <p className="backend-status">
+    Backend status: {backendStatus}
+  </p>
+</div>
 
       {/* Dashboard Summary */}
       <div>
@@ -514,7 +520,7 @@ const registerTherapist = () => {
         <p>No clients found.</p>
       ) : (
         clients.map((client) => (
-          <div key={client._id}>
+         <div className="data-card" key={client._id}>
             <h4>{client.name}</h4>
             <p>Email: {client.email}</p>
             <p>Phone: {client.phone}</p>
@@ -535,7 +541,7 @@ const registerTherapist = () => {
         <p>No sessions found.</p>
       ) : (
         sessions.map((session) => (
-          <div key={session._id}>
+         <div className="data-card" key={session._id}>
             <h4>
               Client: {session.client?.name || "Unknown"}
             </h4>
@@ -602,7 +608,7 @@ const registerTherapist = () => {
         <p>No packages found.</p>
       ) : (
         packages.map((pkg) => (
-          <div key={pkg._id}>
+         <div className="data-card" key={pkg._id}>
             <h4>{pkg.name}</h4>
 
             <p>
@@ -637,7 +643,7 @@ const registerTherapist = () => {
         <p>No payments found.</p>
       ) : (
         payments.map((payment) => (
-          <div key={payment._id}>
+         <div className="data-card" key={payment._id}>
             <h4>Payment</h4>
 
             <p>
@@ -796,7 +802,7 @@ const registerTherapist = () => {
             <p>No scheduled sessions found.</p>
           ) : (
             sessions.map((session) => (
-              <div key={session._id}>
+             <div className="data-card" key={session._id}>
                 <h4>
                   Client:{" "}
                   {session.client?.name || "Unknown"}
