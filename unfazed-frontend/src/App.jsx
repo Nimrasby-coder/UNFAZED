@@ -280,85 +280,123 @@ function App() {
     <div className="app-container">
       <h1>UNFAZED</h1>
 
-      {!isLoggedIn && (
-        <>
-          <section>
-            <h2>Therapist Registration</h2>
+     {!isLoggedIn && (
+  <div className="auth-page">
+    <div className="auth-brand">
+      <h1>UNFAZED</h1>
 
-            <form onSubmit={registerTherapist}>
-              <input
-                type="text"
-                placeholder="Name"
-                value={registerData.name}
-                onChange={(e) =>
-                  setRegisterData({
-                    ...registerData,
-                    name: e.target.value,
-                  })
-                }
-              />
+      <p className="tagline">
+        A smarter way to manage therapy sessions
+      </p>
 
-              <input
-                type="email"
-                placeholder="Email"
-                value={registerData.email}
-                onChange={(e) =>
-                  setRegisterData({
-                    ...registerData,
-                    email: e.target.value,
-                  })
-                }
-              />
+      <div className="brand-info">
+        <div>
+          <span>✓</span>
+          Manage your clients
+        </div>
 
-              <input
-                type="password"
-                placeholder="Password"
-                value={registerData.password}
-                onChange={(e) =>
-                  setRegisterData({
-                    ...registerData,
-                    password: e.target.value,
-                  })
-                }
-              />
+        <div>
+          <span>✓</span>
+          Schedule sessions
+        </div>
 
-              <button type="submit">Register</button>
-            </form>
-          </section>
+        <div>
+          <span>✓</span>
+          Manage packages & payments
+        </div>
+      </div>
+    </div>
 
-          <section>
-            <h2>Therapist Login</h2>
+    <div className="auth-card">
+      <div className="auth-tabs">
+        <span className="active-tab">Therapist Access</span>
+      </div>
 
-            <form onSubmit={loginTherapist}>
-              <input
-                type="email"
-                placeholder="Email"
-                value={loginData.email}
-                onChange={(e) =>
-                  setLoginData({
-                    ...loginData,
-                    email: e.target.value,
-                  })
-                }
-              />
+      <section>
+        <h2>Welcome back</h2>
+        <p className="form-subtitle">
+          Login to your UNFAZED dashboard
+        </p>
 
-              <input
-                type="password"
-                placeholder="Password"
-                value={loginData.password}
-                onChange={(e) =>
-                  setLoginData({
-                    ...loginData,
-                    password: e.target.value,
-                  })
-                }
-              />
+        <form onSubmit={loginTherapist}>
+          <input
+            type="email"
+            placeholder="Email address"
+            value={loginData.email}
+            onChange={(e) =>
+              setLoginData({
+                ...loginData,
+                email: e.target.value,
+              })
+            }
+          />
 
-              <button type="submit">Login</button>
-            </form>
-          </section>
-        </>
-      )}
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginData.password}
+            onChange={(e) =>
+              setLoginData({
+                ...loginData,
+                password: e.target.value,
+              })
+            }
+          />
+
+          <button type="submit">Login to Dashboard</button>
+        </form>
+      </section>
+
+      <section className="register-card">
+        <h2>Create therapist account</h2>
+
+        <p className="form-subtitle">
+          New to UNFAZED? Create your account below.
+        </p>
+
+        <form onSubmit={registerTherapist}>
+          <input
+            type="text"
+            placeholder="Full name"
+            value={registerData.name}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                name: e.target.value,
+              })
+            }
+          />
+
+          <input
+            type="email"
+            placeholder="Email address"
+            value={registerData.email}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                email: e.target.value,
+              })
+            }
+          />
+
+          <input
+            type="password"
+            placeholder="Create password"
+            value={registerData.password}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                password: e.target.value,
+              })
+            }
+          />
+
+          <button type="submit">Create Account</button>
+        </form>
+      </section>
+    </div>
+  </div>
+)}
 
       {isLoggedIn && (
         <>

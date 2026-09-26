@@ -5,12 +5,19 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f7fb;
+  background: #f4f7f6;
   color: #1f2937;
 }
 
 button {
   cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .app-container {
@@ -21,27 +28,90 @@ button {
 }
 
 .app-container > h1 {
-  font-size: 36px;
-  margin-bottom: 25px;
-  color: #243b53;
+  font-size: 40px;
+  text-align: center;
+  color: #1f5f5b;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
-h2 {
-  color: #243b53;
-  margin-top: 35px;
+.app-container > h1::after {
+  content: "Therapist Management";
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0;
+  color: #6b7280;
+  margin-top: 5px;
 }
 
-h3 {
-  margin-bottom: 10px;
+/* Login and registration */
+
+.app-container > section:first-of-type,
+.app-container > section:nth-of-type(2) {
+  max-width: 500px;
+  margin: 25px auto;
 }
 
 section {
   background: white;
   padding: 25px;
   margin-top: 25px;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
 }
+
+section h2 {
+  color: #1f5f5b;
+  margin-top: 0;
+}
+
+form {
+  margin-top: 15px;
+  padding: 20px;
+  background: #f8fafb;
+  border-radius: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2f7d76;
+  box-shadow: 0 0 0 2px rgba(47, 125, 118, 0.1);
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+button {
+  padding: 11px 18px;
+  margin: 5px;
+  border-radius: 9px;
+  background: #2f7d76;
+  color: white;
+  font-size: 14px;
+}
+
+form button {
+  width: 100%;
+  margin: 8px 0 0;
+}
+
+/* Dashboard */
 
 .dashboard {
   display: grid;
@@ -53,53 +123,27 @@ section {
 .dashboard > div {
   background: white;
   padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard h3 {
+  margin: 0 0 12px;
+  color: #6b7280;
+  font-size: 15px;
 }
 
 .dashboard p {
-  font-size: 32px;
-  font-weight: bold;
   margin: 0;
-  color: #2563eb;
+  font-size: 34px;
+  font-weight: bold;
+  color: #1f5f5b;
 }
 
-button {
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background: #2563eb;
-  color: white;
-  font-size: 14px;
-  margin: 5px;
-}
+/* Dashboard sections */
 
-button:hover {
-  opacity: 0.9;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  max-width: 500px;
-  padding: 11px;
-  margin: 7px 0;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-form {
-  margin-top: 15px;
-  padding: 20px;
-  background: #f8fafc;
-  border-radius: 10px;
+section h2 {
+  margin-bottom: 18px;
 }
 
 hr {
@@ -107,6 +151,16 @@ hr {
   border-top: 1px solid #e5e7eb;
   margin: 20px 0;
 }
+
+/* Logout */
+
+.app-container > button {
+  display: block;
+  margin-left: auto;
+  background: #374151;
+}
+
+/* Mobile */
 
 @media (max-width: 900px) {
   .dashboard {
@@ -119,11 +173,139 @@ hr {
     padding: 15px;
   }
 
+  .app-container > h1 {
+    font-size: 30px;
+  }
+
   .dashboard {
     grid-template-columns: 1fr;
   }
 
-  .app-container > h1 {
-    font-size: 28px;
+  section {
+    padding: 18px;
+  }
+}
+/* =========================
+   UNFAZED AUTH PAGE
+========================= */
+
+.auth-page {
+  min-height: 85vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.auth-brand {
+  padding: 30px;
+}
+
+.auth-brand h1 {
+  font-size: 64px;
+  letter-spacing: 5px;
+  color: #1f5f5b;
+  margin: 0;
+}
+
+.tagline {
+  font-size: 20px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.brand-info {
+  margin-top: 35px;
+}
+
+.brand-info div {
+  margin: 18px 0;
+  font-size: 16px;
+  color: #374151;
+}
+
+.brand-info span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background: #2f7d76;
+  color: white;
+  font-size: 13px;
+}
+
+.auth-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card section {
+  margin-top: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.auth-card h2 {
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.form-subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.auth-tabs {
+  margin-bottom: 25px;
+}
+
+.active-tab {
+  color: #2f7d76;
+  font-weight: bold;
+  border-bottom: 2px solid #2f7d76;
+  padding-bottom: 8px;
+}
+
+.register-card {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 30px !important;
+  padding-top: 25px !important;
+}
+
+.register-card h2 {
+  font-size: 20px;
+}
+
+@media (max-width: 800px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .auth-brand {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .auth-brand h1 {
+    font-size: 45px;
+  }
+
+  .brand-info {
+    text-align: left;
+    max-width: 350px;
+    margin: 25px auto;
   }
 }
