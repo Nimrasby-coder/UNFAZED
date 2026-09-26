@@ -1,10 +1,13 @@
 const API_URL = "https://unfazed-g1ya.onrender.com";
 
 export const apiRequest = async (endpoint, options = {}) => {
+  const token = localStorage.getItem("token");
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
   });
