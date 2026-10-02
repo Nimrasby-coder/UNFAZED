@@ -12,7 +12,17 @@ export const apiRequest = async (endpoint, options = {}) => {
     },
   });
 
-  const data = await response.json();
+  const text = await response.text();
+
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  } catch (error) {
+    throw new Error(
+      `Server returned an invalid response (${response.status}).`
+    );
+  }
 
   if (!response.ok) {
     throw new Error(data.message || "Something went wrong");
