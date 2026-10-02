@@ -10,7 +10,7 @@ const createSession = async (req, res) => {
       notes
     } = req.body;
 
-    // Check for overlapping sessions
+    // Check for overlapping booked sessions
     const existingSession = await Session.findOne({
       therapist: req.therapistId,
       status: "booked",
@@ -37,7 +37,6 @@ const createSession = async (req, res) => {
       message: "Session booked successfully",
       session
     });
-
   } catch (error) {
     res.status(500).json({
       message: "Failed to book session",
@@ -58,7 +57,6 @@ const getSessions = async (req, res) => {
       message: "Sessions fetched successfully",
       sessions
     });
-
   } catch (error) {
     res.status(500).json({
       message: "Failed to fetch sessions",
@@ -86,6 +84,12 @@ const cancelSession = async (req, res) => {
       });
     }
 
+    if (session.status === "completed") {
+      return res.status(400).json({
+        message: "Completed session cannot be cancelled"
+      });
+    }
+
     session.status = "cancelled";
     await session.save();
 
@@ -93,7 +97,6 @@ const cancelSession = async (req, res) => {
       message: "Session cancelled successfully",
       session
     });
-
   } catch (error) {
     res.status(500).json({
       message: "Failed to cancel session",

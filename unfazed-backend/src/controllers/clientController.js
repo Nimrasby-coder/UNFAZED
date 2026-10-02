@@ -179,11 +179,35 @@ const updateClientConsent = async (req, res) => {
     });
   }
 };
+const getClientSessions = async (req, res) => {
+  try {
+    const Session = require("../models/Session");
+
+    const sessions = await Session.find({
+      client: req.params.id,
+      therapist: req.therapistId
+    })
+      .populate("client", "name email phone")
+      .sort({ startTime: -1 });
+
+    res.json({
+      message: "Client sessions fetched successfully",
+      sessions
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch client sessions",
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   createClient,
   getClients,
   getClientById,
   updateClient,
   updateClientIntake,
-  updateClientConsent
+  updateClientConsent,
+  getClientSessions
 };

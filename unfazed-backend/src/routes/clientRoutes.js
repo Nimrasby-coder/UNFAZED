@@ -1,4 +1,5 @@
 const express = require("express");
+
 const protect = require("../middleware/authMiddleware");
 
 const {
@@ -7,7 +8,8 @@ const {
   getClientById,
   updateClient,
   updateClientIntake,
-  updateClientConsent
+  updateClientConsent,
+  getClientSessions,
 } = require("../controllers/clientController");
 
 const router = express.Router();
@@ -22,5 +24,8 @@ router.patch("/:id", protect, updateClient);
 
 router.patch("/:id/intake", protect, updateClientIntake);
 
-router.patch("/:id/consent",protect, updateClientConsent)
+router.patch("/:id/consent", protect, updateClientConsent);
+
+router.get("/:id/sessions", protect, getClientSessions);
+
 module.exports = router;
